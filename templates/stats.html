@@ -1,1 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stats ShortLinker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Stats pour le lien : {{ short_id }}</h1>
+    <p>Lien long : <a href="{{ link_data.long_url }}">{{ link_data.long_url }}</a></p>
+    <p>Total de clics : {{ link_data.clicks }}</p>
+
+    <h2>Détails des clics :</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Date</th>
+            <th>IP</th>
+            <th>Browser</th>
+        </tr>
+        {% for c in link_data.history %}
+        <tr>
+            <td>{{ c.date }}</td>
+            <td>{{ c.ip }}</td>
+            <td>{{ c.user_agent }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ url_for('index') }}">Retour à l'accueil</a></p>
+</body>
+</html>
 
