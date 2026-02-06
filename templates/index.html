@@ -1,5 +1,19 @@
-<h2>Raccourcisseur de lien simple avec stats détaillées</h2>
-<form method="post">
-    <input name="long_url" placeholder="Entrez votre lien long" style="width:300px;">
-    <button type="submit">Raccourcir</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShortLinker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>ShortLinker</h1>
+    <form method="post">
+        <input name="long_url" placeholder="Entrez votre lien long" style="width:300px;">
+        <button type="submit">Raccourcir</button>
+    </form>
+
+    {% if short_url %}
+    <p>Lien court créé : <a href="{{ short_url }}">{{ short_url }}</a></p>
+    <p>Voir les stats : <a href="{{ url_for('stats', short_id=short_url.split('/')[-1]) }}">Stats</a></p>
+    {% endif %}
+</body>
+</html>
